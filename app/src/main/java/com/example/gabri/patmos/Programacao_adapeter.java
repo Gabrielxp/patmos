@@ -42,11 +42,11 @@ public class Programacao_adapeter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         View vi = LayoutInflater.from(context).inflate(R.layout.programacao_adapter,viewGroup,false);
         TextView t = (TextView)view.findViewById(R.id.tNomePrograma);
-        ImageView img = (ImageView)view.findViewById(R.id.imgPrograma);
+        //ImageView img = (ImageView)view.findViewById(R.id.imgPrograma);
 
         Programas p = programas.get(i);
         t.setText(p.getNome());
-        img.setImageResource(p.img);
+        //img.setImageResource(p.img);
 
         return vi;
     }

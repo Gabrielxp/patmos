@@ -11,7 +11,7 @@ import java.util.List;
  * Created by Jober on 25/04/2017.
  */
 
-public class Programacao extends AppCompatActivity {
+public class Programacao extends android.support.v7.app.AppCompatActivity {
     private ListView listv;
 
     @Override
@@ -22,7 +22,7 @@ public class Programacao extends AppCompatActivity {
         listv = (ListView) findViewById(R.id.listview);
         List<Programas> progs = Programas.getProgramas();
         listv.setAdapter(new Programacao_adapeter(this,progs));
-        
+
     }
 
 }
