@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,7 +18,7 @@ import java.util.List;
 
 public class Programacao_adapeter extends BaseAdapter {
     private final Activity context;
-    private final List<Programas> programas;
+    private List<Programas> programas = new ArrayList<>();
 
     public Programacao_adapeter(Activity context, List<Programas> programas){
         this.context = context;
@@ -42,13 +43,15 @@ public class Programacao_adapeter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         View vi = context.getLayoutInflater().inflate(R.layout.programacao_adapter,viewGroup,false);
-        TextView t = (TextView)view.findViewById(R.id.tNomePrograma);
-        ImageView img = (ImageView)view.findViewById(R.id.imgPrograma);
 
-        Programas p = programas.get(i);
-        t.setText(p.getNome());
-        img.setImageResource(p.img);
+           if(vi != null){
+                TextView t = (TextView)vi.findViewById(R.id.tNomePrograma);
+                ImageView img = (ImageView)vi.findViewById(R.id.imgPrograma);
 
+                Programas p = programas.get(i);
+                t.setText(p.getNome());
+                img.setImageResource(p.img);
+           }
         return vi;
     }
 }
