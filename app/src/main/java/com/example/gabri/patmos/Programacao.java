@@ -22,6 +22,7 @@ public class Programacao extends android.support.v7.app.AppCompatActivity {
         listv = (ListView) findViewById(R.id.listview);
         List<Programas> progs = Programas.getProgramas();
         listv.setAdapter(new Programacao_adapeter(this,progs));
+        //listv.getId();
 
     }
 
