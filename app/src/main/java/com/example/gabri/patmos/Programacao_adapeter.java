@@ -46,11 +46,13 @@ public class Programacao_adapeter extends BaseAdapter {
 
            if(vi != null){
                 TextView t = (TextView)vi.findViewById(R.id.tNomePrograma);
+                TextView thr = (TextView)vi.findViewById(R.id.tHoraPrograma);
                 ImageView img = (ImageView)vi.findViewById(R.id.imgPrograma);
 
                 Programas p = programas.get(i);
                 t.setText(p.getNome());
                 img.setImageResource(p.img);
+                thr.setText(p.getHorario());
            }
         return vi;
     }
