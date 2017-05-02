@@ -25,6 +25,7 @@
             android:textColor="#000000"
             android:textSize="20dp"/>
 
+<<<<<<< HEAD
         <TextView
             android:id="@+id/tHoraPrograma"
             android:layout_width="wrap_content"
@@ -33,4 +34,7 @@
             android:textColor="#000000"
             android:textSize="15dp"/>
     </LinearLayout>
+=======
+
+>>>>>>> d43b9138cbaab7ad93f3f57d62cea51dce85cba2
 </LinearLayout>
