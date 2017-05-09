@@ -3,9 +3,10 @@ package com.example.gabri.patmos;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TabHost;
 import android.widget.TabHost.TabContentFactory;
@@ -14,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 
-public class MainActivity extends FragmentActivity implements
+public class MainActivity extends AppCompatActivity implements
 		TabHost.OnTabChangeListener, ViewPager.OnPageChangeListener {
 
 	private TabHost mTabHost;
@@ -58,6 +59,9 @@ public class MainActivity extends FragmentActivity implements
 		super.onCreate(savedInstanceState);
 		// Infla o layout
 		setContentView(R.layout.activity_main);
+
+		ActionBar actionBar = getSupportActionBar();
+		actionBar.setTitle("Patmos Web Rádio");
 		// Inicializa o TabHost
 		this.initialiseTabHost(savedInstanceState);
 		if (savedInstanceState != null) {
@@ -77,9 +81,10 @@ public class MainActivity extends FragmentActivity implements
 	private void intialiseViewPager() {
 
 		List<Fragment> fragments = new Vector<Fragment>();
-		fragments.add(Fragment.instantiate(this, TabFragmentA.class.getName()));
-		fragments.add(Fragment.instantiate(this, TabFragmentB.class.getName()));
-		fragments.add(Fragment.instantiate(this, TabFragmentC.class.getName()));
+		fragments.add(Fragment.instantiate(this, Principal_Fragment.class.getName()));
+		fragments.add(Fragment.instantiate(this, Programacao_Fragment.class.getName()));
+
+
 		this.mPagerAdapter = new ViewPagerAdapter(
 				super.getSupportFragmentManager(), fragments);
 		this.mViewPager = (ViewPager) super.findViewById(R.id.viewpager);
@@ -92,18 +97,15 @@ public class MainActivity extends FragmentActivity implements
 		mTabHost.setup();
 		TabInfo tabInfo = null;
 		MainActivity.AddTab(this, this.mTabHost,
-				this.mTabHost.newTabSpec("Tab1").setIndicator("A"),
-				(tabInfo = new TabInfo("Tab1", TabFragmentA.class, args)));
+				this.mTabHost.newTabSpec("Principal").setIndicator("Principal"),
+				(tabInfo = new TabInfo("Principal", Principal_Fragment.class, args)));
 		this.mapTabInfo.put(tabInfo.tag, tabInfo);
+
 		MainActivity.AddTab(this, this.mTabHost,
-				this.mTabHost.newTabSpec("Tab2").setIndicator("B"),
-				(tabInfo = new TabInfo("Tab2", TabFragmentB.class, args)));
+				this.mTabHost.newTabSpec("Programação").setIndicator("Programação"),
+				(tabInfo = new TabInfo("Programação", Programacao_Fragment.class, args)));
 		this.mapTabInfo.put(tabInfo.tag, tabInfo);
-		MainActivity.AddTab(this, this.mTabHost,
-				this.mTabHost.newTabSpec("Tab3").setIndicator("C"),
-				(tabInfo = new TabInfo("Tab3", TabFragmentC.class, args)));
-		this.mapTabInfo.put(tabInfo.tag, tabInfo);
-		mTabHost.setOnTabChangedListener(this);
+
 	}
 
 	private static void AddTab(MainActivity activity, TabHost tabHost,

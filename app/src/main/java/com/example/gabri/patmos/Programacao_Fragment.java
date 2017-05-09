@@ -1,44 +1,30 @@
 package com.example.gabri.patmos;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+
+import java.util.List;
 
 /**
  * Created by gabri on 01/05/2017.
  */
-public class Programacao_Fragment extends Fragment implements View.OnClickListener {
+public class Programacao_Fragment extends Fragment {
 
-    protected ActivityCompat mActivity;
-    private ImageView mCamera;
-    private TextView intro;
-
-    @Override
-    public void onClick(View v) {
-
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-    }
+    private ListView listv;
 
     @Nullable
-    @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.programacao_adapter, container, false);
-
+        View view =  (LinearLayout) inflater.inflate( R.layout.activity_programacao, container, false);
+        listv = (ListView) view.findViewById(R.id.listview);
+        List<Programas> progs = Programas.getProgramas();
+        listv.setAdapter(new Programacao_adapeter(this,progs));
 
         return view;
     }
