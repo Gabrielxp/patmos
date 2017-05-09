@@ -34,7 +34,7 @@ public class Principal extends AppCompatActivity{
         return new Button.OnClickListener() {
             public void onClick(View v){
                 //Navega para a prox tela
-                Intent intent = new Intent(Principal.this,Programacao.class);
+                Intent intent = new Intent(Principal.this,MainActivity.class);
                 //Bundle params = new Bundle();
                 //params.putString("nome","Jober Campos");
                 //intent.putExtras(params);
