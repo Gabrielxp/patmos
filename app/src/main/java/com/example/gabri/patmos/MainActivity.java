@@ -7,6 +7,8 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TabHost;
 import android.widget.TabHost.TabContentFactory;
@@ -71,6 +73,19 @@ public class MainActivity extends AppCompatActivity implements
 		}
 		// Inicializa o ViewPager
 		this.intialiseViewPager();
+
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Infla o menu com os botões da action bar
+		getMenuInflater().inflate(R.menu.menu_main, menu);
+
+		// Sair
+		MenuItem item = menu.findItem(R.id.action_sair);
+
+
+		return true;
 	}
 
 	protected void onSaveInstanceState(Bundle outState) {
