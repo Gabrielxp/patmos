@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TabHost;
 import android.widget.TabHost.TabContentFactory;
+import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.List;
@@ -129,10 +130,12 @@ public class MainActivity extends AppCompatActivity implements
 	@Override
 	public void onPageSelected(int position) {
 		this.mTabHost.setCurrentTab(position);
+		Toast.makeText(this,"Teste", Toast.LENGTH_LONG);
 	}
 
 	@Override
 	public void onPageScrollStateChanged(int state) {
 
 	}
+
 }
