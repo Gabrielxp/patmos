@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -70,13 +71,19 @@ public class Cadastro extends AppCompatActivity {
                 editor = sharedPreferences.edit();
                 editor.putString("email",email);
                 editor.apply();
-                
+
+                Toast.makeText(getContext(),sharedPreferences.getString("email",""),Toast.LENGTH_SHORT).show();
+
                 Intent intent = new Intent(Cadastro.this,MainActivity.class);
 
                 startActivity(intent);
 
             }
         };
+    }
+
+    private Context getContext(){
+        return this;
     }
 
 }
