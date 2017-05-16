@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,9 +52,9 @@ public class Cadastro extends AppCompatActivity {
     private View.OnClickListener onClickBtCad() {
         return new Button.OnClickListener() {
             public void onClick(View v){
-                TextView txtNome = (TextView) findViewById(R.id.tNome);
-                TextView txtEmail = (TextView) findViewById(R.id.tEmail);
-                TextView txtTel = (TextView) findViewById(R.id.tTelefone);
+                EditText txtNome = (EditText) findViewById(R.id.tNome);
+                EditText txtEmail = (EditText) findViewById(R.id.tEmail);
+                EditText txtTel = (EditText) findViewById(R.id.tTelefone);
 
                 String nome = txtNome.getText().toString();
                 String email = txtEmail.getText().toString();
