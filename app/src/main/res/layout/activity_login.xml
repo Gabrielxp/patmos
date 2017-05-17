@@ -32,11 +32,13 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:text="E-mail"
-            android:textSize="20dp"/>
+            android:textSize="20sp"
+            />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:id="@+id/txEmail"
             android:background="@color/gray"
             android:textColorHighlight="@color/colorPrimaryDark"
             android:inputType="textEmailAddress"/>
