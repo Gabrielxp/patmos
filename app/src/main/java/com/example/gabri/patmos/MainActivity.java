@@ -1,6 +1,7 @@
 package com.example.gabri.patmos;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
@@ -73,6 +74,10 @@ public class MainActivity extends AppCompatActivity implements
 		}
 		// Inicializa o ViewPager
 		this.intialiseViewPager();
+
+		SharedPreferences sharedPreferences = getSharedPreferences("IS_LOGADO", Context.MODE_PRIVATE);
+
+		Toast.makeText(this, sharedPreferences.getString("email", ""), Toast.LENGTH_SHORT).show();
 
 	}
 

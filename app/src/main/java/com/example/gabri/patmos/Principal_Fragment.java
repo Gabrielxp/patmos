@@ -48,7 +48,7 @@ public class Principal_Fragment extends Fragment{
         });
 
         ImageButton buttonMais = (ImageButton) view.findViewById(R.id.buttonAumentarVolume);
-        buttonMenos.setOnClickListener(new View.OnClickListener() {
+        buttonMais.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(context, "Clicou Mais Volume", Toast.LENGTH_LONG).show();
