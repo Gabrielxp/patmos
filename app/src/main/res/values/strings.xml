@@ -26,4 +26,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
 
+    <string name="salvar">Salvar</string>
+    <string name="ler">Ler</string>
+    <string name="texto">Digite o texto para salvar:</string>
+
 </resources>

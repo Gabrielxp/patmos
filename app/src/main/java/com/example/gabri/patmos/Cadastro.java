@@ -3,6 +3,7 @@ package com.example.gabri.patmos;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,11 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.List;
 
 /**
  * Created by Jober on 01/05/2017.
@@ -73,6 +70,12 @@ public class Cadastro extends AppCompatActivity {
                 editor.putString("email",email);
                 editor.apply();
 
+                ///------------------ Requisição para cadastrar
+
+                new Async().execute();
+
+                /// --------------------------------
+
                 Toast.makeText(getContext(),sharedPreferences.getString("email",""),Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(Cadastro.this,MainActivity.class);
@@ -85,6 +88,38 @@ public class Cadastro extends AppCompatActivity {
 
     private Context getContext(){
         return this;
+    }
+
+
+
+
+    private class Async extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected void onPreExecute(){
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+
+            EditText txtNome = (EditText) findViewById(R.id.tNome);
+            EditText txtEmail = (EditText) findViewById(R.id.tEmail);
+            EditText txtTel = (EditText) findViewById(R.id.tTelefone);
+
+            String nome = txtNome.getText().toString();
+            String email = txtEmail.getText().toString();
+            String tel = txtTel.getText().toString();
+
+            try {
+                new NetworkUtils().cadUsuarioPost(email,nome,tel);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
     }
 
 }
