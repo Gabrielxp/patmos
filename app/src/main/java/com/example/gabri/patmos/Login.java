@@ -29,12 +29,13 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        /*if( getSharedPreferences("IS_LOGADO", Context.MODE_PRIVATE).getString("email","") != null){
+        if( (getSharedPreferences("IS_LOGADO", Context.MODE_PRIVATE).getString("email","") != null) &&
+                (getSharedPreferences("IS_LOGADO", Context.MODE_PRIVATE).getString("email","") != "")){
             setContentView(R.layout.activity_login);
             Intent intent = new Intent(Login.this,MainActivity.class);
             startActivity(intent);
             finish();
-        }*/
+        }
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
@@ -103,10 +104,10 @@ public class Login extends AppCompatActivity {
 
                 editor.putString("email", txtEmail.getText().toString());
 
-
                 editor.apply();
 
                 startActivity(intent);
+                finish();
             }else{
                 Toast.makeText(getContext(),"Email não cadastrado, faça seu cadastro para acessar a radio!",Toast.LENGTH_LONG).show();
             }

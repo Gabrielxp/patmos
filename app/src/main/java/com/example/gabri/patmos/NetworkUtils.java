@@ -1,5 +1,9 @@
 package com.example.gabri.patmos;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -12,6 +16,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -159,14 +164,67 @@ public class NetworkUtils {
         }
         in.close();
         */
-        String ret = convertStreamToString(con.getInputStream());
 
-        JSONArray j = new JSONArray(ret);
+        if(responseCode == 200) {
 
-        //print result
-        System.out.println(ret);
+            String ret = convertStreamToString(con.getInputStream());
 
-        return null;
+            JSONArray j = new JSONArray(ret);
+
+            List<Programas> progs = new ArrayList<>();
+
+            for (int i = 0; i < j.length() ; i++) {
+                JSONObject jprog = j.getJSONObject(i);
+
+                Programas prog = new Programas();
+                prog.setNome(jprog.getString("nomePrograma"));
+                JSONObject jhrini = jprog.getJSONObject("dataHoraInicio");
+                JSONObject jhrfim = jprog.getJSONObject("dataHoraFim");
+
+                String hrini,hrfim;
+
+                hrini = jhrini.getString("hour");
+
+                if(jhrini.getString("hour").length() == 1) hrini = "0"+hrini;
+
+                if(jhrini.getString("minute").length() == 1) {
+                    hrini += ":0" + jhrini.getString("minute");
+                }else{
+                    hrini += ":"+jhrini.getString("minute");
+                }
+
+                hrini += ":00";
+
+                hrfim = jhrfim.getString("hour");
+
+                if(jhrfim.getString("hour").length() == 1) hrfim = "0"+hrfim;
+
+                if(jhrfim.getString("minute").length() == 1) {
+                    hrfim += ":0" + jhrfim.getString("minute");
+                }else{
+                    hrfim += ":"+jhrfim.getString("minute");
+                }
+
+                hrfim += ":00";
+
+                prog.setHorario( hrini+ " - " + hrfim );
+
+                byte[] decodedString = Base64.decode(jprog.getString("foto"), Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+
+                prog.setImg_bmp(decodedByte);
+
+                progs.add(prog);
+
+            }
+
+            //print result
+            System.out.println(ret);
+
+            return progs;
+        }else {
+            return null;
+        }
     }
 
     private String convertStreamToString(InputStream is) {

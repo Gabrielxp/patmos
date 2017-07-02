@@ -54,6 +54,7 @@ public class Programacao_adapeter extends BaseAdapter {
                 Programas p = programas.get(i);
                 t.setText(p.getNome());
                 img.setImageResource(p.img);
+                img.setImageBitmap(p.getImg_bmp());
                 thr.setText(p.getHorario());
            }
         return vi;
