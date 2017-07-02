@@ -76,7 +76,7 @@ public class Cadastro extends AppCompatActivity {
 
                 /// --------------------------------
 
-                Toast.makeText(getContext(),sharedPreferences.getString("email",""),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),sharedPreferences.getString("email","") + " está logado :)",Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(Cadastro.this,MainActivity.class);
 

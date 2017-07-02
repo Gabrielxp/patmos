@@ -1,9 +1,11 @@
 package com.example.gabri.patmos;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,8 +31,9 @@ public class Login extends AppCompatActivity {
 
         if( getSharedPreferences("IS_LOGADO", Context.MODE_PRIVATE).getString("email","") != null){
             setContentView(R.layout.activity_login);
-            Intent intent = new Intent(Login.this,Cadastro.class);
+            Intent intent = new Intent(Login.this,MainActivity.class);
             startActivity(intent);
+            finish();
         }
 
         ActionBar actionBar = getSupportActionBar();
@@ -52,19 +55,8 @@ public class Login extends AppCompatActivity {
     private View.OnClickListener onClickBtProg() {
         return new Button.OnClickListener() {
             public void onClick(View v){
-                Intent intent = new Intent(Login.this,MainActivity.class);
-                //EditText editText = (EditText) findViewById(R.id.txEmail);
-
-                sharedPreferences = getSharedPreferences("IS_LOGADO", Context.MODE_PRIVATE);
-
-                editor = sharedPreferences.edit();
-
-                editor.putString("email", txtEmail.getText().toString());
-
-
-                editor.apply();
-
-                startActivity(intent);
+                Async asy = new Async();
+                asy.execute(new String[]{txtEmail.getText().toString()});
             }
         };
     }
@@ -75,6 +67,7 @@ public class Login extends AppCompatActivity {
                 Intent intent = new Intent(Login.this,Cadastro.class);
 
                 startActivity(intent);
+                finish();
             }
         };
     }
@@ -91,10 +84,32 @@ public class Login extends AppCompatActivity {
         return this;
     }
 
+
     private class Async extends AsyncTask<String, Void, Boolean> {
 
         @Override
         protected void onPreExecute(){
+
+        }
+
+        protected void onPostExecute(Boolean result) {
+            if(result){
+                Intent intent = new Intent(Login.this,MainActivity.class);
+                //EditText editText = (EditText) findViewById(R.id.txEmail);
+
+                sharedPreferences = getSharedPreferences("IS_LOGADO", Context.MODE_PRIVATE);
+
+                editor = sharedPreferences.edit();
+
+                editor.putString("email", txtEmail.getText().toString());
+
+
+                editor.apply();
+
+                startActivity(intent);
+            }else{
+                Toast.makeText(getContext(),"Email não cadastrado, faça seu cadastro para acessar a radio!",Toast.LENGTH_LONG).show();
+            }
 
         }
 
@@ -107,7 +122,7 @@ public class Login extends AppCompatActivity {
             Boolean b = false;
 
             try {
-                b = new NetworkUtils().logar(email);
+                b = new NetworkUtils().logar(strings[0]);
             } catch (Exception e) {
                 e.printStackTrace();
             }

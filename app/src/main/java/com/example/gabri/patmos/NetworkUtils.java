@@ -71,7 +71,7 @@ public class NetworkUtils {
     // HTTP POST request
     public boolean logar(String email) throws Exception {
 
-        String url = new ConnectRest().urlUsrSave;
+        String url = new ConnectRest().urlUsrLogar;
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 

@@ -89,6 +89,27 @@ public class MainActivity extends AppCompatActivity implements
 		// Sair
 		MenuItem item = menu.findItem(R.id.action_sair);
 
+		item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+			@Override
+			public boolean onMenuItemClick(MenuItem menuItem) {
+
+				SharedPreferences.Editor editor;
+				SharedPreferences sharedPreferences;
+
+				sharedPreferences = getSharedPreferences("IS_LOGADO", Context.MODE_PRIVATE);
+
+				editor = sharedPreferences.edit();
+
+				editor.putString("email", "");
+
+				editor.apply();
+
+				finish();
+
+				return false;
+			}
+		});
+
 
 		return true;
 	}
