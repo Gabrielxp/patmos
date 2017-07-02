@@ -77,7 +77,8 @@ public class MainActivity extends AppCompatActivity implements
 
 		SharedPreferences sharedPreferences = getSharedPreferences("IS_LOGADO", Context.MODE_PRIVATE);
 
-		Toast.makeText(this, sharedPreferences.getString("email", ""), Toast.LENGTH_SHORT).show();
+		//Toast.makeText(this, sharedPreferences.getString("email", ""), Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, "Carregando Rádio", Toast.LENGTH_LONG).show();
 
 	}
 

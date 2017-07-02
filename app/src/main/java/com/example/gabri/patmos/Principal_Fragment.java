@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -24,8 +25,9 @@ public class Principal_Fragment extends Fragment{
 
     Context context;
     boolean prepared;
-    boolean started = false;
+    boolean started = true;
     float volume = 50;
+    ProgressBar spinner;
 
     private String urlStream = "http://stm47.srvstm.com:16890/;";
     private MediaPlayer mediaPlayer;
@@ -48,6 +50,10 @@ public class Principal_Fragment extends Fragment{
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         new PlayerTask().execute(urlStream);
+
+        spinner = (ProgressBar)view.findViewById(R.id.progressBar1);
+        spinner.setVisibility(View.GONE);
+        spinner.setVisibility(View.VISIBLE);
 
         ImageButton button = (ImageButton) view.findViewById(R.id.buttonPlay);
         button.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +82,10 @@ public class Principal_Fragment extends Fragment{
             }
         });
 
+
+
+
+
         return view;
     }
 
@@ -99,7 +109,9 @@ public class Principal_Fragment extends Fragment{
         @Override
         protected void onPostExecute(Boolean aBoolean) {
             super.onPostExecute(aBoolean);
-            //mediaPlayer.start();
+            mediaPlayer.start();
+            spinner.setVisibility(View.INVISIBLE);
+
         }
 
         
