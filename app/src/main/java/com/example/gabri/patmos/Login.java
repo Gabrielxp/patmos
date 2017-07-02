@@ -29,12 +29,12 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        if( getSharedPreferences("IS_LOGADO", Context.MODE_PRIVATE).getString("email","") != null){
+        /*if( getSharedPreferences("IS_LOGADO", Context.MODE_PRIVATE).getString("email","") != null){
             setContentView(R.layout.activity_login);
             Intent intent = new Intent(Login.this,MainActivity.class);
             startActivity(intent);
             finish();
-        }
+        }*/
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();

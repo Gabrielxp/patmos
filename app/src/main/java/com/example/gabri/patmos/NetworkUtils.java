@@ -32,7 +32,6 @@ public class NetworkUtils {
 
         String urlParameters = "{\n" +
                 "    \"nome\": \""+nome+"\",\n" +
-                "    \"senha\": \"123\",\n" +
                 "    \"telefone\": \""+tel+"\",\n" +
                 "    \"email\": \""+email+"\"\n" +
                 "}";

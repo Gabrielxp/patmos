@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements
 
 				editor = sharedPreferences.edit();
 
-				editor.putString("email", "");
+				editor.remove("email");
 
 				editor.apply();
 
