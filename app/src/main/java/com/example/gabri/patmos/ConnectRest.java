@@ -12,5 +12,6 @@ public class ConnectRest {
 
     public final String urlUsrLogar = url+ "usuario/logar";
 
+    public final String urlProgramacao = url+ "programa/findall";
 
 }

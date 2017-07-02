@@ -1,7 +1,12 @@
 package com.example.gabri.patmos;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -21,15 +26,15 @@ public class HttpURLConnectionExample {
         System.out.println("Testing 1 - Send Http GET request");
         http.sendGet();
 
-        System.out.println("\nTesting 2 - Send Http POST request");
-        http.sendPost();
+        //System.out.println("\nTesting 2 - Send Http POST request");
+        //http.sendPost();
 
     }
 
     // HTTP GET request
     private void sendGet() throws Exception {
 
-        String url = "http://www.google.com/search?q=mkyong";
+        String url = new ConnectRest().urlProgramacao;
 
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -44,6 +49,7 @@ public class HttpURLConnectionExample {
         System.out.println("\nSending 'GET' request to URL : " + url);
         System.out.println("Response Code : " + responseCode);
 
+        /*
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(con.getInputStream()));
         String inputLine;
@@ -53,10 +59,36 @@ public class HttpURLConnectionExample {
             response.append(inputLine);
         }
         in.close();
+        */
+        String ret = convertStreamToString(con.getInputStream());
+
+        JSONObject j = new JSONObject(ret);
 
         //print result
-        System.out.println(response.toString());
+        System.out.println(ret);
 
+    }
+
+    private String convertStreamToString(InputStream is) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+
+        String line;
+        try {
+            while ((line = reader.readLine()) != null) {
+                sb.append(line).append('\n');
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return sb.toString();
     }
 
     // HTTP POST request

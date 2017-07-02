@@ -1,5 +1,7 @@
 package com.example.gabri.patmos;
 
+import android.os.AsyncTask;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +46,9 @@ public class Programas {
 
     public static List<Programas> getProgramas(){
         List<Programas> progs = new ArrayList<>();
+
+        new Async().execute();
+
         progs.add(new Programas("Programa 01",R.drawable.img_padrao,"00:00:00 - 05:00:00"));
         progs.add(new Programas("Programa 02",R.drawable.img_padrao,"06:00:00 - 07:00:00"));
         progs.add(new Programas("Programa 03",R.drawable.img_padrao,"07:00:00 - 08:00:00"));
@@ -51,5 +56,25 @@ public class Programas {
         progs.add(new Programas("Programa 05",R.drawable.img_padrao,"09:00:00 - 10:00:00"));
 
         return progs;
+    }
+
+    static class Async extends AsyncTask<Void, Void, Void> {
+
+        private Exception exception;
+
+        protected void onPostExecute() {
+            // TODO: check this.exception
+            // TODO: do something with the feed
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                new NetworkUtils().buscaProgramacao();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
     }
 }

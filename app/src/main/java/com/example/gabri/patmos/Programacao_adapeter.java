@@ -1,5 +1,6 @@
 package com.example.gabri.patmos;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.View;
@@ -43,7 +44,9 @@ public class Programacao_adapeter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         View vi = context.getLayoutInflater(new Bundle()).inflate(R.layout.programacao_adapter,viewGroup,false);
 
-           if(vi != null){
+
+
+        if(vi != null){
                 TextView t = (TextView)vi.findViewById(R.id.tNomePrograma);
                 TextView thr = (TextView)vi.findViewById(R.id.tHoraPrograma);
                 ImageView img = (ImageView)vi.findViewById(R.id.imgPrograma);
@@ -55,4 +58,6 @@ public class Programacao_adapeter extends BaseAdapter {
            }
         return vi;
     }
+
+
 }
